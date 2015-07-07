@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-md-10">
+		<% if current_user.name %>
+			<h2><%= current_user.name %>'s Wiki List</h2>
+		<% else %>
+			<h2>My Wili List</h2>
+		<% end %>
+		<% if @wikis.any? %>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Body</th>
+						<th>Private?</th>
+					</tr>
+				</theard>
+				<tbody>
+					<%= render partial: 'wikis/wiki', collection: @wikis %>
+				</tbody>
+			</table>
+		
+		<% end %>
+		<h4>Let's create a new Wiki~</h4>
+		<%= render partial: 'wikis/form', locals: { wiki: Wiki.new } %>
+	</div>
+</div>
