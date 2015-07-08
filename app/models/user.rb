@@ -7,4 +7,15 @@ class User < ActiveRecord::Base
    has_many :wikis   
 
    validates :name, presence: true 
+
+   def standard?
+   		role == 'standard'
+   end
+
+   def premium?
+   		role == 'premium'
+   end
+   def admin?
+   	role == 'admin'
+   end
 end

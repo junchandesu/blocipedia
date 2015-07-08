@@ -5,6 +5,6 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		@wikis = current_user.wikis
+		@wikis = current_user.wikis.visible_to
 	end
 end

@@ -3,4 +3,6 @@ class Wiki < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body, presence: true
+
+  scope :visible_to, ->  { where(private: false)}
 end
