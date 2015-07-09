@@ -2,6 +2,11 @@
 	<td><%= wiki.title %></td>
 	<td><%= wiki.body %></td>
 	<td><%= wiki.private %></td>
-	<td><%= link_to "Edit",  edit_user_wiki_path(wiki, user_id: current_user), class: 'btn btn-success' %></td>
-	<td><%= link_to "Delete", user_wiki_path(wiki, user_id: current_user), method: :delete, class: 'btn btn-info' %>
-</tr>		
+	<td>
+		<% if policy(wiki).edit? %>
+		<%= link_to "Edit",  edit_user_wiki_path(wiki, user_id: current_user), class: 'btn btn-success' %>
+		<% end %></td>
+	<td>
+		<% if policy(wiki).destroy? %>
+		<%= link_to "Delete", user_wiki_path(wiki, user_id: current_user), method: :delete, class: 'btn btn-info' %>
+		<% end %></tr>		

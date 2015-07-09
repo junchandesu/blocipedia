@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
    validates :name, presence: true 
 
+   after_initialize :default_standard
+
    def standard?
    		role == 'standard'
    end
@@ -15,7 +17,12 @@ class User < ActiveRecord::Base
    def premium?
    		role == 'premium'
    end
+
    def admin?
    	role == 'admin'
    end
+
+    def default_standard
+     self.role ||= "standard"
+  end
 end

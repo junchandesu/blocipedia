@@ -24,6 +24,7 @@ class ApplicationPolicy
 
   def update?
     user.present? && (record.user == user || user.admin?)
+
   end
 
   def edit?
@@ -31,11 +32,12 @@ class ApplicationPolicy
   end
 
   def destroy?
-    update
+    update?
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    #Pundit.policy_scope!(user, record.class)
+    record.class
   end
 
   class Scope
