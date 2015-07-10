@@ -23,15 +23,21 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+## css 
 gem 'bootstrap-sass'
 
+## authorization, User generate
 gem 'devise'
 
+# secret information file .ignore
 gem 'figaro', '1.0'
 
+# authentication policy rule
 gem 'pundit'
 
+# generate sample data
 gem 'faker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

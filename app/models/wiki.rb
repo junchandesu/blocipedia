@@ -8,5 +8,4 @@ class Wiki < ActiveRecord::Base
 
   scope :get_public_wikis, ->  { where(private: false)}
 
- 
 end

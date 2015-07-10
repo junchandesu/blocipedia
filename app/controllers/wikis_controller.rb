@@ -30,13 +30,13 @@ class WikisController < ApplicationController
   end
 
   def edit
-  	@wiki = current_user.wikis.find(params[:id])
+  	@wiki = Wiki.find(params[:id])
     authorize @wiki
   end
 
 
   def update
-  	@wiki = current_user.wikis.find(params[:id])
+  	@wiki = Wiki.find(params[:id])
     authorize @wiki
   	if @wiki.update_attributes(wiki_params)
   		flash[:notice] = "Wiki was updated."
@@ -48,7 +48,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.delete
       flash[:notice] = "Selected Wiki was deleted."
