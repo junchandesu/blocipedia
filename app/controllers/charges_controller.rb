@@ -13,9 +13,12 @@ class ChargesController < ApplicationController
    def downgrade
       current_user.role = "standard"
       current_user.save!
+      current_user.wikis.each do |wiki|
+        wiki.update_attribute(:private, false)
+      end
+     redirect_to root_path
       
-    ##create to stop charging on stripe
-   end
+    end
 
   def create
     @default_amount = 150_00
