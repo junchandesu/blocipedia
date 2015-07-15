@@ -13,14 +13,28 @@
 			<li><%= link_to "About", welcome_about_path %></li>
 		
 			<div class="pull-right user-info">
-				<% if current_user %>
+				<% if current_user && (current_user.role == "premium" || current_user.role == "admin") %>
 				You are signed in as <%= current_user.name || current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+					<% if current_user.role == "premium" %>
+						<h3><%= link_to "Downgrade to Standard plan?", charges_downgrade_path, class: 'btn btn-success', data: { confirm: 'Are you sure you want to downgrade and make your wikis public viewable (no more private wikis)?'} %></h3>
+						<% end %>				
+				<% elsif current_user && (current_user.role == "standard") %>
+				You are signed in as <%= current_user.name || current_user.email %>! 
+				<%= link_to "Upgrade to Premium Plan?", new_charge_path, class: 'btn btn-info' %>
+				<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
 				<% else %>
 					<%= link_to "Sign In", 	new_user_session_path %> or
 					<%= link_to "Sign Up", new_user_registration_path %>
 				<% end %>
 			</div>
 		</ul>
+
+		
+		
+
+
 
 	<div class="container">
 		<% if flash[:notice] %>
@@ -41,7 +55,7 @@
 		<% end %>
       
 	</div>
-	  
+
 <%= yield %>
 
 </body>

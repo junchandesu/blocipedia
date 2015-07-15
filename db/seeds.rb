@@ -7,28 +7,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
-5.times do
-	user = User.new(
-		name: 	Faker::Name.name,
-		email:  Faker::Internet.email,
-		password: Faker::Lorem.characters(10)
+roles = [ 'premium', 'standard']
 
-		)
-	user.skip_confirmation!
-	user.save!
-end
-
-
-5.times do
+10.times do
 	user = User.new(
 		name: 	Faker::Name.name,
 		email:  Faker::Internet.email,
 		password: Faker::Lorem.characters(10),
-		role: 'premium'
+		role: roles.sample
+
 		)
 	user.skip_confirmation!
 	user.save!
 end
+
 
 user = User.new(
 	name: 'junjun',

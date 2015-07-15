@@ -1,3 +1,5 @@
 <h1>Welcome to Blocipedia</h1>
-<p>Let's login!</p>
-<%= link_to "My Blocipedia", current_user, class: 'media' %>
+<p>Let's Sign Up for FREE and Login!</p>
+<% if current_user %>
+	<%= link_to "My Blocipedia", current_user, class: 'media' %>
+<% end %>

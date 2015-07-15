@@ -1,7 +1,11 @@
 <tr>
 	<td><%= wiki.title %></td>
 	<td><%= wiki.body %></td>
-	<td><%= wiki.private %></td>
+	<td><% if wiki.private %>
+		Yes
+		<% else %>
+		No
+		<% end %></td>
 	<td>
 		<% if policy(wiki).edit? %>
 		<%= link_to "Edit",  edit_user_wiki_path(wiki, user_id: current_user), class: 'btn btn-success' %>
