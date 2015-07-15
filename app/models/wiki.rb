@@ -6,6 +6,6 @@ class Wiki < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 
-  scope :visible_to, ->  (user) { user && ((user.role == 'premium') || (user.role == 'admin')) ? all : where(private: false)}
+  scope :visible_to, ->  (user) { user && ((user.role == 'premium') || (user.role == 'admin')) ? user.wikis.where(private: true) + where(private: false) : where(private: false)}
 
 end

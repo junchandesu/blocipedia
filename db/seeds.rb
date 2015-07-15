@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
-roles = [ 'premium', 'standard']
+roles = ['premium', 'standard']
 
 10.times do
 	user = User.new(
@@ -15,7 +15,6 @@ roles = [ 'premium', 'standard']
 		email:  Faker::Internet.email,
 		password: Faker::Lorem.characters(10),
 		role: roles.sample
-
 		)
 	user.skip_confirmation!
 	user.save!
