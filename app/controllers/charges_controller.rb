@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController 
 
+
    def new
    @stripe_btn_data = {
      key: "#{ Rails.configuration.stripe[:publishable_key] }",
@@ -13,7 +14,7 @@ class ChargesController < ApplicationController
       current_user.role = "standard"
       current_user.save!
       current_user.wikis.each do |wiki|
-        wiki.update_attribute(:private, false)
+      wiki.update_attribute(:private, false)
       end
      redirect_to root_path
       
@@ -35,7 +36,9 @@ class ChargesController < ApplicationController
      description: "BigMoney Membership - #{current_user.email}",
      currency: 'usd'
    )
- 
+
+   #update User info before showing the message
+   current_user.update_attributes(role: "premium")
    flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
    redirect_to user_path(current_user) # or wherever
  
@@ -47,4 +50,11 @@ class ChargesController < ApplicationController
    redirect_to new_charge_path
  end
 
+end
+
+
+class Amount 
+  def self.default
+   10_00
+  end
 end

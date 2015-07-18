@@ -26,3 +26,10 @@ class User < ActiveRecord::Base
      self.role ||= "standard"
   end
 end
+
+
+class Amount
+  def default
+   return 10_00
+  end
+end
