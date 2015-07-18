@@ -1,7 +1,7 @@
 <div class=container>
-	<h2><p><%= @wiki.title %></p></h2>
+	<h2><p><%= markdown_to_html @wiki.title %></p></h2>
 
-	<p><%= @wiki.body %></p>
+	<p><%= markdown_to_html @wiki.body %></p>
 
 </div>
 <%= link_to "My Wikipedia list", user_path %>

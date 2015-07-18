@@ -1,6 +1,5 @@
 <tr>
-	<td><%= link_to wiki.title, user_wiki_path(wiki, user_id: current_user) %></td>
-	<td><%= wiki.body %></td>
+	<td><%= link_to (markdown_to_html wiki.title), user_wiki_path(wiki, user_id: current_user) %></td>
 	<td><% if wiki.private %>
 		Yes
 		<% else %>
