@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'collaborators/create'
+
+  get 'collaborators/destroy'
+
   get 'charges/new'
 
   devise_for :users
@@ -13,7 +17,9 @@ Rails.application.routes.draw do
   get 'charges/downgrade'
 
   resources :users, only: [:show] do 
-      resources :wikis
+      resources :wikis do
+        resources :collaborators
+      end
   end
 
   resources :charges, only: [:new, :create]

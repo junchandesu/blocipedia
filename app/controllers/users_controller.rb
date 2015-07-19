@@ -6,5 +6,6 @@ class UsersController < ApplicationController
 	
 	def show
 		@wikis = Wiki.visible_to(current_user)
+		@collaborators = collaborators.users.current_user
 	end
 end

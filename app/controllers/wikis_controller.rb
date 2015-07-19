@@ -32,6 +32,7 @@ class WikisController < ApplicationController
 
   def edit
   	@wiki = Wiki.find(params[:id])
+    @users = collaborators_list  
     authorize @wiki
   end
 
@@ -41,7 +42,7 @@ class WikisController < ApplicationController
     authorize @wiki
   	if @wiki.update_attributes(wiki_params)
   		flash[:notice] = "Wiki was updated."
-  		redirect_to current_user
+  		render :show
   	else
   		flash[:error] = "There was an error saving the updated wiki."
   		render :edit
@@ -68,4 +69,13 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private)
   end
  
+  def collaborators_list  
+    collabos = []
+    User.all.each do |user|
+      if !user.admin? || user != current_user
+        collabos << user
+      end 
+     end
+     collabos
+   end
 end
