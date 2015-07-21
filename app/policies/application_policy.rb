@@ -11,7 +11,8 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    true
+    #scope.where(:id => record.id).exists?
   end
 
   def create?
@@ -23,7 +24,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present? && (record.user == user || user.admin?)
+    user.present? && ( record.user == user || user.admin?)
 
   end
 

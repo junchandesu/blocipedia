@@ -14,10 +14,10 @@
 		<h4>You can add/remove your collaborator for your "<%= @wiki.title %>" Wiki</h4>
 		<% @users.each do |user| %>
 		    <%= user.email %>
-		    <% if !@collaborator %>
+		    <% if !@collaborator  %>
 				<%= link_to "Add as collaborator", user_wiki_collaborators_path(@wiki, user_id: current_user), method: :post %>
 			<% else %>
-				"Your Collaborator" <%= link_to "Remove as collaborator", user_wiki_collaborator_path(@wiki, user_id: current_user), method: :destroy %>
+				"Your Collaborator" <%= link_to "Remove as collaborator", user_wiki_collaborators_path(@wiki, user_id: current_user), method: :destroy %>
 			<% end %>
 			<br>
 		<% end %>	
