@@ -44,6 +44,10 @@ gem 'stripe'
 # use markdown 
 gem 'redcarpet'
 
+# a templating engine for HTML
+gem 'haml'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

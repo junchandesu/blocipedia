@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
    has_many :collaborators
    has_many :wikis, through: :collaborators   
 
-   validates :name, presence: true 
+   validates :name, presence: true, uniqueness: true 
 
    after_initialize :default_standard
 
