@@ -50,6 +50,8 @@ gem 'haml'
 # slugging or permalink plugins for ActiveRecord
 gem 'friendly_id', '~> 5.1.0'
 
+# preview before Markdown saved
+gem 'epic-editor-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
