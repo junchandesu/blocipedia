@@ -47,6 +47,9 @@ gem 'redcarpet'
 # a templating engine for HTML
 gem 'haml'
 
+# slugging or permalink plugins for ActiveRecord
+gem 'friendly_id', '~> 5.1.0'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

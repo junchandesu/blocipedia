@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -33,5 +36,11 @@ end
 class Amount
   def default
    return 10_00
+  end
+
+  private
+
+  def should_generate_new_friendly_id?
+    name_changed? || super
   end
 end
