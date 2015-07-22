@@ -1,8 +1,9 @@
 class WikisController < ApplicationController
 
   def index
-  	@wikis = Wiki.all
-    authorize @wikis
+  	# @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
+    #authorize @wikis
  end
 
   def new
@@ -11,28 +12,30 @@ class WikisController < ApplicationController
   end
 
   def create
-  	@user = User.find(current_user.id)
-  	@wiki = @user.wikis.build(wiki_params)
+    @user = current_user
+   	@wiki = Wiki.new(wiki_params)
+    @wiki.user_id = @user.id
     authorize @wiki
 
   	if @wiki.save
   		flash[:notice] = "New Wiki is saved."
-  		redirect_to @user
+  		redirect_to @wiki
   	else
   		 flash[:error] = "There was an error saving this new wiki."
-  		 redirect_to @user
+  		 render :new
   	end
   end
 
 
   def show
     @wiki = Wiki.find(params[:id])
+    @user = User.all
     authorize @wiki
   end
 
   def edit
   	@wiki = Wiki.find(params[:id])
-    @users = collaborators_list  
+    @users = collaborators_list 
     authorize @wiki
   end
 
@@ -54,13 +57,11 @@ class WikisController < ApplicationController
     authorize @wiki
     if @wiki.delete
       flash[:notice] = "Selected Wiki was deleted."
-      redirect_to current_user
+      redirect_to wikis_path
     else
-        flash[:error] = "Wiki was not deleted successfully."
-        render :show
+      flash[:error] = "Wiki was not deleted successfully."
+      render :show
     end
-
-
   end
 
   private

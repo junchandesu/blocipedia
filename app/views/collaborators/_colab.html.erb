@@ -1,2 +1,14 @@
-<%= user.id %>
+<% @users.each do |user| %>
+		<% next if current_user == user %>
+		
+		    Name: <%= user.name %>
+		    Email: <%=  user.email %>
+		    	<% if Collaborator.where(user_id: user.id, wiki_id: @wiki)  %>
+					 <%= link_to "Remove as collaborator", wiki_collaborators_path(@wiki, @collaborator), method: :destroy, class: 'btn btn-info' %>
+			<% else %>
+				
+				 	<%= link_to "Add as collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-success' %>
+			<% end %>
+		<br>
+		<% end %>	
 

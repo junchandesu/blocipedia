@@ -1,5 +1,5 @@
 <tr>
-	<td><%= link_to (markdown_to_html wiki.title), user_wiki_path(wiki, user_id: current_user) %></td>
+	<td><%= link_to (markdown_to_html wiki.title), wiki %></td>
 	<td><% if wiki.private == true %>
 		Yes
 		<% else %>
@@ -8,17 +8,17 @@
 	</td>
 	<td>
 		<% if policy(wiki).edit? %>
-		<%= link_to "Edit Wiki",  edit_user_wiki_path(wiki, user_id: current_user), class: 'btn btn-success' %>
+		<%= link_to "Edit Wiki",  edit_wiki_path(wiki), class: 'btn btn-success' %>
 		<% end %>
 	</td>
 	<td>
 		<% if policy(wiki).destroy? %>
-		<%= link_to "Delete Wiki", user_wiki_path(wiki, user_id: current_user), method: :delete, class: 'btn btn-info' %>
+		<%= link_to "Delete Wiki", wiki, method: :delete, class: 'btn btn-info' %>
 		<% end %>
 	</td>
 	<td>
 		<% if policy(wiki).edit? %>
-		<%= link_to "Add/Remove Collaborator",  edit_user_wiki_path(wiki, user_id: current_user), class: 'btn btn-warning' %>
+		<%= link_to "Add/Remove Collaborator",  edit_wiki_path(wiki, user_id: current_user), class: 'btn btn-warning' %>
 		<% end %>
 	</td>
 

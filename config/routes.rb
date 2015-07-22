@@ -16,11 +16,9 @@ Rails.application.routes.draw do
 
   get 'charges/downgrade'
 
-  resources :users, only: [:show] do 
-      resources :wikis do
+   resources :wikis do
         resources :collaborators
-      end
-  end
+    end
 
   resources :charges, only: [:new, :create]
 
