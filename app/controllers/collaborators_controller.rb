@@ -14,10 +14,11 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-  	@user = User.find(params[:user_id])
+  	@user = User.find(params[:id])
   	@wiki = Wiki.find(params[:wiki_id])
-  	@collaborator = Collaborator.where(user_id: @user, wiki_id: @wiki)
-  	if @collaborator.destroy
+  	@collaborator = Collaborator.where(user_id: @user, wiki_id: @wiki).first
+
+     	if @collaborator.destroy
   		flash[:notice] = "Collaborator removed"
   	else
   		flash[:error] = "There was an error. Pleaset try again"
