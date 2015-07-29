@@ -47,6 +47,8 @@ gem 'redcarpet'
 # a templating engine for HTML
 gem 'haml'
 
+# EpicEditor to split screen 
+gem 'epic-editor-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -22,7 +22,7 @@ class WikisController < ApplicationController
   		redirect_to @wiki
   	else
   		 flash[:error] = "There was an error saving this new wiki."
-  		 render :new
+  		 redirect_to wikis_path
   	end
   end
 
